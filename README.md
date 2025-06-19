@@ -102,7 +102,7 @@ spring-blog-app/
 
 ## 🤝 Collaboration
 
-Frontend will be developed and integrated by **[Your Teammate’s Name or GitHub]**.
+Frontend will be developed and integrated 
 
 ---
 
