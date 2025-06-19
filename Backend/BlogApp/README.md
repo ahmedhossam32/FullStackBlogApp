@@ -4,20 +4,46 @@
 
 ## ✅ Technologies Used
 
-- Java 17, Spring Boot 3
+- Java 17
+- Spring Boot 3
 - Spring Security + JWT
 - Hibernate (JPA)
 - MySQL
-- Postman (testing)
 - Lombok
+- Postman (for API testing)
+
+---
+
+## 📦 Project Structure
+
+---
+## 🗂 Project Structure
+
+```
+Backend/
+└── BlogApp/
+├── src/
+│ └── main/
+│ ├── java/
+│ │ └── com/blog/
+│ │ ├── Config/ → JWT & Security setup
+│ │ ├── Controller/ → All REST endpoints
+│ │ ├── Service/ → Business logic layer
+│ │ ├── Model/ → Entity classes
+│ │ ├── Repository/ → Spring Data JPA Repos
+│ │ ├── Interaction/ → Strategy for notifications
+│ │ └── BlogAppApplication.java
+│ └── resources/
+│ └── application.properties
+```
 
 ---
 
 ## 📜 Authentication
 
-- `POST /auth/signup` → register a new user
-- `POST /auth/login` → returns JWT token
-- Secured endpoints require JWT in `Authorization` header
+- `POST /auth/signup` → Register new user
+- `POST /auth/login` → Get JWT token
+- Pass token via `Authorization: Bearer <token>` header
 
 ---
 
@@ -98,10 +124,10 @@
 
 ## 🔒 Security Design
 
-- JWT authentication with `JwtAuthFilter`
-- User injected into requests via `@RequestAttribute("user")`
-- Service layer validates ownership for edit/delete
-- Unauthorized users blocked at controller level
+- JWT authentication via `JwtAuthFilter`
+- Logged-in user injected using `@RequestAttribute("user")`
+- All secured actions checked for user ownership in service layer
+- Unauthorized actions blocked by role/ownership validation
 
 ---
 
@@ -109,10 +135,10 @@
 
 | Pattern              | Usage Location                                      | Purpose |
 |----------------------|-----------------------------------------------------|---------|
-| Strategy Pattern     | `Interaction`, `LikeInteraction`, `CommentInteraction` | Dynamic notification generation for different actions |
-| Builder Pattern      | Lombok `@Builder` in entities                       | Clean object construction |
-| Template-like Pattern| Notification flow via reusable message logic       | Consistent structure in feedback |
-| Clean Architecture   | Controller → Service → Repository                   | Code modularity, readability, testability |
+| Strategy Pattern     | `Interaction`, `LikeInteraction`, `CommentInteraction` | Dynamic notification handling based on action type |
+| Builder Pattern      | Lombok `@Builder` in model entities                | Clean, chainable object creation |
+| Template-like Pattern| Reusable notification construction logic           | Keeps consistency and extensibility |
+| Clean Architecture   | Controller → Service → Repository                   | Clear separation of concerns |
 
 ---
 
@@ -122,32 +148,33 @@
 - `BlogPost` ↔ `Like`, `Comment`, `Notification` → OneToMany
 - `User` ↔ `Notification` → ManyToOne
 - `User` ↔ `Community` (as member and owner) → ManyToMany + ManyToOne
+- `Community` ↔ `CommunityPost` → OneToMany
 
 ---
 
 ## 📌 Other Details
 
-- Cascade deletion: when a blog is deleted, related likes/comments/notifications are deleted automatically
-- Notifications handled via **Strategy Pattern**
-- Fully tested with Postman for all edge cases (ownership, auth, invalid actions)
+- Cascade delete: when a blog or community post is deleted, related likes/comments/notifications are also deleted automatically
+- Notifications are decoupled from controller logic using the **Strategy pattern**
+- Entities validated via user ownership or admin role in service layer
+- Fully tested using Postman (including edge cases, bad tokens, and unauthorized access)
 
 ---
 
 ## 🧪 Testing Summary
 
-- ✅ Auth: Signup/Login
-- ✅ Blog CRUD
-- ✅ Comments + Likes + Notifications
-- ✅ Community join/post/leave
-- ✅ Admin tools (delete anything)
-- ✅ Invalid cases and security tested
+- ✅ Authentication (signup/login)
+- ✅ Blog post CRUD
+- ✅ Community create/join/post/leave
+- ✅ Comments and likes with notification
+- ✅ Admin moderation routes
+- ✅ Edge cases: invalid access, missing tokens, foreign ownership
 
 ---
 
 ## 🔮 Planned Enhancements
 
-- Trending page based on most liked posts
-- Swagger docs
-- Global exception handling with `@ControllerAdvice`
-- DTO usage for secure, structured responses
-- Frontend integration in React
+- 🔝 Trending page (top liked posts)
+- 📄 Swagger/OpenAPI documentation
+- 📦 Global exception handling with `@ControllerAdvice`
+- 🔒 Secure DTO-base
