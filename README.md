@@ -40,7 +40,8 @@
 
 ## 📘 Backend API Reference
 
-> Full details and implementation explained in [`Backend/spring-blog-app/BACKEND_DETAILS.md`](./Backend/BlogApp/BACKEND_DETAILS.md)
+> Full details and implementation explained in [`Backend/BlogApp/README.md`](https://github.com/ahmedhossam32/spring-blog-app/blob/main/Backend/BlogApp/README.md)
+
 
 
 
