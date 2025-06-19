@@ -1,34 +1,8 @@
-# 📝 Spring Blog App
-
-**Spring Blog App** is a full-featured blogging platform where users can write blogs, join communities, comment, like, and receive notifications. The backend is fully implemented using Java Spring Boot, and the frontend (React) will be added later as a team collaboration.
+# 📘 Backend API & Architecture — Spring Blog App
 
 ---
 
-## 👤 User Features (ROLE_USER)
-
-- ✅ Sign up & login (JWT secured)
-- ✅ Create, update, delete personal blogs
-- ✅ Create, join, leave public communities
-- ✅ Post in communities
-- ✅ Like and unlike posts (blog or community)
-- ✅ Comment on any post
-- ✅ Receive notifications when someone:
-  - Likes your post
-  - Comments on your post
-- ✅ View joined communities and members
-- ✅ Search blogs and communities
-
----
-
-## 👑 Admin Features (ROLE_ADMIN)
-
-- 🔍 View all users
-- 🗑 Delete any blog, comment, or community post
-- 🧵 View and moderate all community content
-
----
-
-## 🛠 Tech Stack
+## ✅ Technologies Used
 
 - Java 17
 - Spring Boot 3
@@ -36,50 +10,167 @@
 - Hibernate (JPA)
 - MySQL
 - Lombok
+- Postman (for API testing)
+
+---
+
+## 📦 Project Structure
+
+Backend/
+└── BlogApp/
+├── src/
+│ └── main/
+│ ├── java/
+│ │ └── com/blog/
+│ │ ├── Config/ → JWT & Security setup
+│ │ ├── Controller/ → All REST endpoints
+│ │ ├── Service/ → Business logic layer
+│ │ ├── Model/ → Entity classes
+│ │ ├── Repository/ → Spring Data JPA Repos
+│ │ ├── Interaction/ → Strategy for notifications
+│ │ └── BlogAppApplication.java
+│ └── resources/
+│ └── application.properties
 
 
-## 📘 Backend API Reference
+---
 
-> Full details and implementation explained in [`Backend/BlogApp/README.md`](https://github.com/ahmedhossam32/spring-blog-app/blob/main/Backend/BlogApp/README.md)
+## 📜 Authentication
 
+- `POST /auth/signup` → Register new user
+- `POST /auth/login` → Get JWT token
+- Pass token via `Authorization: Bearer <token>` header
 
+---
 
+## 👥 Roles & Permissions
 
-Frontend (coming soon):
-- React.js
-- Axios
+### 👤 USER (ROLE_USER)
+- Create, edit, delete own blogs
+- Join, leave, and create communities
+- Post in communities
+- Like/unlike and comment on any post
+- View and mark notifications
+- Search blogs/communities
+
+### 👑 ADMIN (ROLE_ADMIN)
+- View/delete any blog, comment, community, or community post
+- View all users
+
+---
+
+## 📄 Blog Endpoints
+
+- `POST /blogs` → Create blog
+- `GET /blogs` → Get all blogs
+- `GET /blogs/user` → Get user's blogs
+- `PUT /blogs/{id}` → Update blog
+- `DELETE /blogs/{id}` → Delete blog
+- `GET /blogs/search?title=` → Search blogs
+
+---
+
+## 🏘 Community Endpoints
+
+- `POST /communities` → Create a community (auto joins user)
+- `DELETE /communities/{id}` → Delete (owner only)
+- `POST /communities/{id}/join` → Join a community
+- `POST /communities/{id}/leave` → Leave a community
+- `GET /communities` → Browse all
+- `GET /communities/joined` → View joined communities
+- `GET /communities/{id}/members` → View members
+- `GET /communities/search?name=` → Search by name
+
+---
+
+## 🧵 Community Post Endpoints
+
+- `POST /community-posts` → Create a community post
+- `GET /community-posts/by-community/{id}` → Get posts by community
+- `GET /community-posts/by-user` → Get user's posts
+- `PUT /community-posts/{id}` → Update post
+- `DELETE /community-posts/{id}` → Delete post
+- `DELETE /community-posts/admin/{id}` → Admin delete
+
+---
+
+## ❤️ Like Endpoints
+
+- `POST /posts/{postId}/like` → Like a post
+- `DELETE /posts/{postId}/like` → Unlike a post
+
+---
+
+## 💬 Comment Endpoints
+
+- `POST /posts/{postId}/comment` → Add comment
+- `GET /posts/{postId}/comments` → Get comments
+- `PUT /posts/comments/{commentId}` → Edit comment
+- `DELETE /posts/comments/{commentId}` → Delete comment
+- `DELETE /posts/admin/comments/{commentId}` → Admin delete
+
+---
+
+## 🔔 Notification Endpoints
+
+- `GET /api/notifications` → Get user notifications
+- `PUT /api/notifications/{id}/read` → Mark notification as read
+
+---
+
+## 🔒 Security Design
+
+- JWT authentication via `JwtAuthFilter`
+- Logged-in user injected using `@RequestAttribute("user")`
+- All secured actions checked for user ownership in service layer
+- Unauthorized actions blocked by role/ownership validation
 
 ---
 
 ## 🧠 Design Patterns Used
 
-The backend uses multiple object-oriented design principles:
-
-- **Strategy Pattern** – for handling notifications via `Interaction` interface (`LikeInteraction`, `CommentInteraction`)
-- **Builder Pattern** – for building model objects like `Notification`, `Like`, `Comment` using Lombok’s `@Builder`
-- **Template-like Pattern** – for a consistent structure in sending notifications
-- **Clean Layered Architecture** – clear separation of controller, service, and repository layers
-
----
-
-## 📂 Project Structure
-spring-blog-app/
-├── Backend/ ← Spring Boot backend code
-└── Frontend/ ← To be added 
-
+| Pattern              | Usage Location                                      | Purpose |
+|----------------------|-----------------------------------------------------|---------|
+| Strategy Pattern     | `Interaction`, `LikeInteraction`, `CommentInteraction` | Dynamic notification handling based on action type |
+| Builder Pattern      | Lombok `@Builder` in model entities                | Clean, chainable object creation |
+| Template-like Pattern| Reusable notification construction logic           | Keeps consistency and extensibility |
+| Clean Architecture   | Controller → Service → Repository                   | Clear separation of concerns |
 
 ---
 
-## 🔒 Authentication
+## 🔄 Data Relationships
 
-- `POST /auth/signup` → Register
-- `POST /auth/login` → Receive JWT token
-- Use `Authorization: Bearer <token>` in all secured requests
+- `User` ↔ `BlogPost` → OneToMany
+- `BlogPost` ↔ `Like`, `Comment`, `Notification` → OneToMany
+- `User` ↔ `Notification` → ManyToOne
+- `User` ↔ `Community` (as member and owner) → ManyToMany + ManyToOne
+- `Community` ↔ `CommunityPost` → OneToMany
 
 ---
 
-## ⚙️ Status
+## 📌 Other Details
 
-- ✅ Backend completed and tested
-- 🚧 Frontend under development
+- Cascade delete: when a blog or community post is deleted, related likes/comments/notifications are also deleted automatically
+- Notifications are decoupled from controller logic using the **Strategy pattern**
+- Entities validated via user ownership or admin role in service layer
+- Fully tested using Postman (including edge cases, bad tokens, and unauthorized access)
 
+---
+
+## 🧪 Testing Summary
+
+- ✅ Authentication (signup/login)
+- ✅ Blog post CRUD
+- ✅ Community create/join/post/leave
+- ✅ Comments and likes with notification
+- ✅ Admin moderation routes
+- ✅ Edge cases: invalid access, missing tokens, foreign ownership
+
+---
+
+## 🔮 Planned Enhancements
+
+- 🔝 Trending page (top liked posts)
+- 📄 Swagger/OpenAPI documentation
+- 📦 Global exception handling with `@ControllerAdvice`
+- 🔒 Secure DTO-base
