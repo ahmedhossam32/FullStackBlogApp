@@ -3,6 +3,11 @@
 **Spring Blog App** is a full-featured blogging platform built with Java Spring Boot. It allows users to create and manage blogs, interact within communities, comment, like posts, and receive notifications. The backend is fully developed and tested. The frontend (React) will be integrated soon in collaboration with a teammate.
 
 ---
+## 📘 Backend API Reference
+
+> Full details and implementation explained in [`Backend/BlogApp/README.md`](https://github.com/ahmedhossam32/spring-blog-app/blob/main/Backend/BlogApp/README.md)
+
+---
 
 ## 👤 User Features (ROLE_USER)
 
@@ -53,11 +58,6 @@ Frontend (coming soon):
 
 ---
 
-## 📁 Project Structure
-
- Project Structure
-
----
 ## 🗂 Project Structure
 
 ```
@@ -77,14 +77,6 @@ Backend/
 │ └── resources/
 │ └── application.properties
 ```
-
----
-
----
-
-## 📘 Backend API Reference
-
-> Full details and implementation explained in [`Backend/BlogApp/README.md`](https://github.com/ahmedhossam32/spring-blog-app/blob/main/Backend/BlogApp/README.md)
 
 ---
 
