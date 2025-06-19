@@ -83,6 +83,25 @@ A secure, feature-rich blog platform built with Java Spring Boot. Users can crea
 
 ---
 
+## 🧠 Design Patterns Used
+
+This project uses several object-oriented design principles and patterns to ensure maintainability, modularity, and scalability:
+
+- **Strategy Pattern**  
+  Used to handle different types of user interactions (like, comment) via the `Interaction` interface and its implementations (`LikeInteraction`, `CommentInteraction`). This allows new types of interactions to be added easily without modifying notification logic.
+
+- **Builder Pattern (via Lombok)**  
+  Used across model entities (e.g., `Notification`, `Like`) with `@Builder` to construct objects in a readable and clean manner.
+
+- **Template-like Notification Handling**  
+  Notifications are built using a consistent template flow, relying on the polymorphism provided by the interaction strategy interface.
+
+
+---
+
+Would you like me to append this automatically to the full `README.md` content I gave earlier?
+
+
 ## 📚 Project Structure
 spring-blog-app/
 ├── Backend/
