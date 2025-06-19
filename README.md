@@ -16,6 +16,10 @@
 
 ## 📦 Project Structure
 
+---
+## 🗂 Project Structure
+
+```
 Backend/
 └── BlogApp/
 ├── src/
@@ -31,7 +35,7 @@ Backend/
 │ │ └── BlogAppApplication.java
 │ └── resources/
 │ └── application.properties
-
+```
 
 ---
 
