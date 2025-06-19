@@ -43,11 +43,14 @@ Frontend (coming soon):
 
 ---
 
-## 🔧 Design Patterns Used
+## 🧠 Design Patterns Used
 
-- **Strategy Pattern** → for notification logic (via `Interaction` interface)
-- **Builder Pattern** → using Lombok's `@Builder` in model entities
-- **Clean Layered Architecture** → controller, service, repository separation
+The backend uses multiple object-oriented design principles:
+
+- **Strategy Pattern** – for handling notifications via `Interaction` interface (`LikeInteraction`, `CommentInteraction`)
+- **Builder Pattern** – for building model objects like `Notification`, `Like`, `Comment` using Lombok’s `@Builder`
+- **Template-like Pattern** – for a consistent structure in sending notifications
+- **Clean Layered Architecture** – clear separation of controller, service, and repository layers
 
 ---
 
