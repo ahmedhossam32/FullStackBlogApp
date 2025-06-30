@@ -168,19 +168,19 @@ Confirmation and ability to delete the blog post.
 ---
 
 ### 21. Notification: Liked
-![NotificationLiked](./Screenshots/NotificationLiked.png)  
+![NotificationLiked](./Screenshots/NotifcationLiked.png)
 User receives a notification when someone likes their blog.
 
 ---
 
 ### 22. Notification: Commented
-![NotificationCommented](./Screenshots/NotificationCommented.png)  
+![NotificationCommented](./Screenshots/NotifcationCommented.png)  
 User is notified when someone comments on their blog.
 
 ---
 
 ### 23. Notification Toast
-![NotificationDetails](./Screenshots/NotificationDetails.png)  
+![NotificationLiked](./Screenshots/NotifcationLiked.png)
 Toast popup allows user to mark notification as read or dismiss it.
 
 ---
