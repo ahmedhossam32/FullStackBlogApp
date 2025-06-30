@@ -1,87 +1,158 @@
-# 📝 Spring Blog App
+# 📰 Full Stack Blog App
 
-**Spring Blog App** is a full-featured blogging platform built with Java Spring Boot. It allows users to create and manage blogs, interact within communities, comment, like posts, and receive notifications. The backend is fully developed and tested. The frontend (React) will be integrated soon in collaboration with a teammate.
-
----
-## 📘 Backend API Reference
-
-> Full details and implementation explained in [`Backend/BlogApp/README.md`](https://github.com/ahmedhossam32/spring-blog-app/blob/main/Backend/BlogApp/README.md)
+This is a complete full-stack blogging platform built with **Java Spring Boot (Backend)** and **React (Frontend)**. It supports user authentication, blog creation, interaction through likes and comments, community features, and real-time notifications.
 
 ---
 
-## 👤 User Features (ROLE_USER)
+## 🛠️ Built With
 
-- ✅ Sign up and login securely (JWT)
-- ✅ Create, edit, and delete personal blog posts
-- ✅ Create, join, and leave communities
-- ✅ Post in joined communities
-- ✅ Like/unlike blog or community posts
-- ✅ Comment on blog or community posts
-- ✅ Receive notifications when someone:
-  - Likes your post
-  - Comments on your post
-- ✅ View joined communities and their members
-- ✅ Search blogs and communities by title or name
-
----
-
-## 👑 Admin Features (ROLE_ADMIN)
-
-- 🔍 View all users
-- 🗑 Delete any blog, comment, or community
-- 🧵 View and moderate all community posts
-
----
-
-## 🛠 Tech Stack
-
+### 🧠 Backend
 - Java 17
-- Spring Boot 3
-- Spring Security + JWT
+- Spring Boot
+- Spring Security with JWT
 - Hibernate (JPA)
-- MySQL
+- PostgreSQL
 - Lombok
-- Postman (for API testing)
 
-Frontend (coming soon):
+### 🎨 Frontend
 - React.js
 - Axios
+- Formik
+- Context API
+- Plain CSS / Inline styling
+
+### 🔗 Other Tools
+- Postman (API Testing)
+- GitHub
+- IntelliJ & VS Code
 
 ---
 
-## 🧠 Design Patterns Used
+## ✨ Features
 
-- **Strategy Pattern** – Used for dynamic notification logic via the `Interaction` interface
-- **Builder Pattern** – Used in model construction with Lombok’s `@Builder`
-- **Template-like Pattern** – Ensures reusable structure for notifications
-- **Clean Architecture** – Follows Controller → Service → Repository layering
-
----
-
-## 🗂 Project Structure
-
-```
-Backend/
-└── BlogApp/
-├── src/
-│ └── main/
-│ ├── java/
-│ │ └── com/blog/
-│ │ ├── Config/ → JWT & Security setup
-│ │ ├── Controller/ → All REST endpoints
-│ │ ├── Service/ → Business logic layer
-│ │ ├── Model/ → Entity classes
-│ │ ├── Repository/ → Spring Data JPA Repos
-│ │ ├── Interaction/ → Strategy for notifications
-│ │ └── BlogAppApplication.java
-│ └── resources/
-│ └── application.properties
-```
+- ✅ User registration with optional profile picture
+- ✅ Login with JWT authentication
+- ✅ Create, edit, and delete blogs
+- ✅ Add images to blog posts
+- ✅ Like/unlike posts
+- ✅ Comment on blog and community posts
+- ✅ Real-time notifications using Observer pattern (like/comment)
+- ✅ Create, join, leave communities
+- ✅ Write posts in communities
+- ✅ View public blogs & search by title/content
+- ✅ See account stats and recent activity
+- ✅ Admin role for moderation
+- ✅ Fully responsive UI
 
 ---
 
-## ⚙️ Project Status
+## 🖼️ Screenshots (with explanations)
 
-- ✅ Backend implementation complete
-- ✅ All core features tested with Postman
-- 🚧 Frontend integration under development
+### 1. `HomePage.png`  
+The landing page when a user visits the web app for the first time.
+
+### 2. `Signin.png`  
+User signs in to access features like writing, liking, and commenting.
+
+### 3. `SignUp.png`  
+User registration screen with name, email, DOB, profile picture (optional), username, and password.
+
+### 4. `FYP1.png`  
+Feed of all public blogs sorted by newest first. Users can interact by liking or commenting.
+
+### 5–6. `Blogs1.png`, `Blogs2.png`  
+Browsing public blog posts, with visible like and comment counts.
+
+### 7. `Blogs3Liked.png`  
+User liked several posts, including "How I Stayed Focused" and "Coding Daily".
+
+### 8–9. `Blogs4.png`, `blogs5.png`  
+User explored Olivia's blog about solo travel and liked it.
+
+### 10. `Commented.png`  
+User commented on Olivia’s post. Another comment from Noah is also visible.
+
+### 11. `EditAndDeleteComment.png`  
+User can edit or delete their own comment if needed.
+
+### 12. `PostBlog1.png`  
+User starts creating a new blog post.
+
+### 13. `PostBlog2.png`  
+User writes the title, content, and adds a blog image.
+
+### 14. `MyPostAdded.png`  
+The newly published blog appears in the public feed with others.
+
+### 15. `SearchBlogs.png`  
+User searches for "Java" and finds blogs that mention it in the title or content.
+
+### 16–17. `AddednewPost.png`, `MyPostComments.png`  
+User added new posts and explored comments on their own blog.
+
+### 18. `MyBlogs.png`  
+User opens "My Blogs" from the sidebar and sees all their written blogs.
+
+### 19. `myblogsEditorDelete.png`  
+User has the ability to edit or delete their own blog posts directly.
+
+### 20. `EditMyBlog.png`  
+Edit blog post screen — user can change title, content, and image.
+
+### 21. `DeleteMyblog.png`  
+Confirmation that a user can easily delete their own blog.
+
+### 22–23. `NotificationLiked.png`, `NotificationCommented.png`  
+Notifications appear when someone likes or comments on a user’s blog.
+
+### 24. `NotificationDetails.png`  
+User can mark notification as read or dismiss the popup toast.
+
+### 25–26. `MyPostComments2.png`, `MyPostComments.png`  
+Different blogs by the user now contain many comments.
+
+### 27. `MyAccountDetails.png`  
+Shows account info: username, email, total blogs, likes, comments, recent activity.
+
+### 28. `LogoutSignout.png`  
+User can log out via the red "Logout" button or from the sidebar below the profile picture.
+
+---
+
+## 📂 Project Structure
+
+FullStackBlogApp/
+├── Backend/
+│ └── BlogApp/ # Spring Boot project
+├── Frontend/ # React application
+├── Screenshots/ # App UI screenshots
+└── README.md # This file
+
+
+
+---
+
+## 🔙 Backend (Spring Boot)
+
+The backend handles all business logic, database interaction, security, and API endpoints for authentication, blogs, likes, comments, communities, and notifications.
+
+> 📌 Full documentation available at:  
+> [`Backend/BlogApp/README.md`](./Backend/BlogApp/README.md)
+
+---
+
+## 🔜 Frontend (React)
+
+The frontend is a fully responsive SPA built using React with inline styling. It connects to the backend using Axios and manages auth state via Context API.
+
+> 📌 See: [`Frontend/README.md`](./Frontend/README.md)
+
+---
+
+## 🙌 Author
+
+**Ahmed Hossam**
+
+---
+
+
