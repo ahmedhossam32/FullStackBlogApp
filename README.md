@@ -45,77 +45,167 @@ This is a complete full-stack blogging platform built with **Java Spring Boot (B
 - ✅ Fully responsive UI
 
 ---
-
 ## 🖼️ Screenshots (with explanations)
 
-### 1. `HomePage.png`  
+### 1. Home Page
+![HomePage](./Screenshots/HomePage.png)  
 The landing page when a user visits the web app for the first time.
 
-### 2. `Signin.png`  
+---
+
+### 2. Sign In
+![Signin](./Screenshots/Signin.png)  
 User signs in to access features like writing, liking, and commenting.
 
-### 3. `SignUp.png`  
-User registration screen with name, email, DOB, profile picture (optional), username, and password.
+---
 
-### 4. `FYP1.png`  
-Feed of all public blogs sorted by newest first. Users can interact by liking or commenting.
+### 3. Sign Up
+![SignUp](./Screenshots/SignUp.png)  
+User registration screen with name, email, date of birth, optional profile picture, username (must be unique), and password.
 
-### 5–6. `Blogs1.png`, `Blogs2.png`  
-Browsing public blog posts, with visible like and comment counts.
+---
 
-### 7. `Blogs3Liked.png`  
-User liked several posts, including "How I Stayed Focused" and "Coding Daily".
+### 4. Feed Page
+![FYP1](./Screenshots/FYP1.png)  
+Feed showing all public blogs sorted by newest first. Users can like, comment, and explore other blogs.
 
-### 8–9. `Blogs4.png`, `blogs5.png`  
-User explored Olivia's blog about solo travel and liked it.
+---
 
-### 10. `Commented.png`  
-User commented on Olivia’s post. Another comment from Noah is also visible.
+### 5. Blogs List – Page 1
+![Blogs1](./Screenshots/Blogs1.png)  
+User browsing various blogs, each showing number of likes and comments.
 
-### 11. `EditAndDeleteComment.png`  
-User can edit or delete their own comment if needed.
+---
 
-### 12. `PostBlog1.png`  
-User starts creating a new blog post.
+### 6. Blogs List – Page 2
+![Blogs2](./Screenshots/Blogs2.png)  
+Continuation of the blog feed.
 
-### 13. `PostBlog2.png`  
-User writes the title, content, and adds a blog image.
+---
 
-### 14. `MyPostAdded.png`  
-The newly published blog appears in the public feed with others.
+### 7. Liked Blogs
+![Blogs3Liked](./Screenshots/Blogs3Liked.png)  
+User liked several posts including "How I Stayed Focused" and "Coding Daily".
 
-### 15. `SearchBlogs.png`  
-User searches for "Java" and finds blogs that mention it in the title or content.
+---
 
-### 16–17. `AddednewPost.png`, `MyPostComments.png`  
-User added new posts and explored comments on their own blog.
+### 8. Blog by Olivia – Page 1
+![Blogs4](./Screenshots/Blogs4.png)  
+User reading Olivia's blog about solo travel.
 
-### 18. `MyBlogs.png`  
-User opens "My Blogs" from the sidebar and sees all their written blogs.
+---
 
-### 19. `myblogsEditorDelete.png`  
-User has the ability to edit or delete their own blog posts directly.
+### 9. Blog by Olivia – Page 2
+![blogs5](./Screenshots/blogs5.png)  
+Continuation of Olivia’s blog and user liked it.
 
-### 20. `EditMyBlog.png`  
-Edit blog post screen — user can change title, content, and image.
+---
 
-### 21. `DeleteMyblog.png`  
-Confirmation that a user can easily delete their own blog.
+### 10. Commented on Post
+![Commented](./Screenshots/Commented.png)  
+User commented on Olivia’s post. Other comments are visible too.
 
-### 22–23. `NotificationLiked.png`, `NotificationCommented.png`  
-Notifications appear when someone likes or comments on a user’s blog.
+---
 
-### 24. `NotificationDetails.png`  
-User can mark notification as read or dismiss the popup toast.
+### 11. Edit/Delete Comment
+![EditAndDeleteComment](./Screenshots/EditAndDeleteComment.png)  
+User can edit or delete their own comment.
 
-### 25–26. `MyPostComments2.png`, `MyPostComments.png`  
-Different blogs by the user now contain many comments.
+---
 
-### 27. `MyAccountDetails.png`  
-Shows account info: username, email, total blogs, likes, comments, recent activity.
+### 12. Create a Blog Post – Step 1
+![PostBlog1](./Screenshots/PostBlog1.png)  
+User opens the blog creation form.
 
-### 28. `LogoutSignout.png`  
-User can log out via the red "Logout" button or from the sidebar below the profile picture.
+---
+
+### 13. Create a Blog Post – Step 2
+![PostBlog2](./Screenshots/PostBlog2.png)  
+User enters title, content, and uploads an image.
+
+---
+
+### 14. Blog Post Added
+![MyPostAdded](./Screenshots/MyPostAdded.png)  
+New blog appears in the public feed alongside others.
+
+---
+
+### 15. Search Blogs
+![SearchBlogs](./Screenshots/SearchBlogs.png)  
+Search by keyword (e.g., “Java”) returns relevant blogs.
+
+---
+
+### 16. Added New Post
+![AddednewPost](./Screenshots/AddednewPost.png)  
+User added another blog post to the platform.
+
+---
+
+### 17. My Blogs Page
+![MyBlogs](./Screenshots/MyBlogs.png)  
+User accesses their own blogs via the "My Blogs" page.
+
+---
+
+### 18. Edit/Delete Options
+![myblogsEditorDelete](./Screenshots/myblogsEditorDelete.png)  
+User can choose to edit or delete their own blog.
+
+---
+
+### 19. Edit Blog
+![EditMyBlog](./Screenshots/EditMyBlog.png)  
+Blog editor to modify title, content, or image.
+
+---
+
+### 20. Delete Blog
+![DeleteMyblog](./Screenshots/DeleteMyblog.png)  
+Confirmation and ability to delete the blog post.
+
+---
+
+### 21. Notification: Liked
+![NotificationLiked](./Screenshots/NotificationLiked.png)  
+User receives a notification when someone likes their blog.
+
+---
+
+### 22. Notification: Commented
+![NotificationCommented](./Screenshots/NotificationCommented.png)  
+User is notified when someone comments on their blog.
+
+---
+
+### 23. Notification Toast
+![NotificationDetails](./Screenshots/NotificationDetails.png)  
+Toast popup allows user to mark notification as read or dismiss it.
+
+---
+
+### 24. Comments on Blog – Page 1
+![MyPostComments](./Screenshots/MyPostComments.png)  
+User views comments on their own blog (e.g., “Java Code”).
+
+---
+
+### 25. Comments on Blog – Page 2
+![MyPostComments2](./Screenshots/MyPostComments2.png)  
+Another post (e.g., “Waking Up Early”) with comments.
+
+---
+
+### 26. Account Details
+![MyAccountDetails](./Screenshots/MyAccountDetails.png)  
+Displays user’s name, username, email, stats (total blogs, likes, comments), and recent activity.
+
+---
+
+### 27. Logout Options
+![LogoutSignout](./Screenshots/LogoutSignout.png)  
+User can logout via the red button or from the sidebar under the profile picture.
 
 ---
 
