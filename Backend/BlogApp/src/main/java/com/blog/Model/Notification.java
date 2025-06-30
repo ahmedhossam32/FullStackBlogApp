@@ -25,15 +25,21 @@ public class Notification {
 
     private boolean read;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recipient_id")
     @JsonIgnore
     private User recipient;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Post post;
 
+    @Transient
+    private Long postId;
+
+    public Long getPostId() {
+        return post != null ? post.getId() : null;
+    }
 }

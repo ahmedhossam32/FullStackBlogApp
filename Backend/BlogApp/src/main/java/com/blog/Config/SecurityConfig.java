@@ -3,6 +3,8 @@ package com.blog.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,19 +25,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .cors(Customizer.withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()                          // allow login/signup
-                        .requestMatchers("/blogs", "/blogs/search").permitAll()          // allow public GET
-                        .requestMatchers("/blogs/**").authenticated()                    // protect blog actions
+                        .requestMatchers(HttpMethod.POST, "/blogs/upload-image").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/users/upload-image").permitAll() // ✅ allow image upload
+                        .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/blogs").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/blogs/search").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
-
-
-
 }

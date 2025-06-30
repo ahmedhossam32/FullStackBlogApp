@@ -1,6 +1,6 @@
 package com.blog.Model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
@@ -9,30 +9,27 @@ import org.hibernate.annotations.OnDeleteAction;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="Likes")
+@Table(name = "Likes")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Like
-{
+public class Like {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnore
+    @JsonIgnoreProperties({"password", "email", "posts", "likes", "comments", "joinedCommunities"})
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "post_id")
-
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
+    @JsonIgnoreProperties({"likes", "comments", "notifications", "user"})
     private Post post;
 
-
     private LocalDateTime createdAt;
-
 }

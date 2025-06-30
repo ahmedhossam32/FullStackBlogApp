@@ -20,9 +20,7 @@ public class LikeService {
     private final BlogPostRepository blogPostRepository;
     private final CommunityPostRepository communityPostRepository;
 
-    /**
-     * Fetches a BlogPost or CommunityPost by ID.
-     */
+
     public Post getThisPost(Long postId) {
         return blogPostRepository.findById(postId)
                 .map(post -> (Post) post)

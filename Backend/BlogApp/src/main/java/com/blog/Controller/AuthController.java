@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -27,28 +28,36 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody User user) {
+
+        if (user.getProfileImage() == null || user.getProfileImage().trim().isEmpty()) {
+            user.setProfileImage("/uploads/default-avatar.png"); // ✅ ensure this default file exists
+        }
+
         String response = userService.signup(user);
+
+        if ("Username already taken".equals(response)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+        }
+
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody User loginRequest) {
-        Optional<User> user = userService.findByUsername(loginRequest.getUsername());
+        Optional<User> userOpt = userService.findByUsername(loginRequest.getUsername());
 
-        if (user.isEmpty()) {
+        if (userOpt.isEmpty() ||
+                !passwordEncoder.matches(loginRequest.getPassword(), userOpt.get().getPassword())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
 
-        if (!passwordEncoder.matches(loginRequest.getPassword(), user.get().getPassword())) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
-        }
+        User user = userOpt.get();
+        String token = jwtUtil.generateToken(user.getUsername());
 
-        String token = jwtUtil.generateToken(user.get().getUsername());
-
-
-        return ResponseEntity.ok().body(
-                java.util.Map.of("token", "Bearer " + token)
-        );
+        return ResponseEntity.ok(Map.of(
+                "token", "Bearer " + token,
+                "user", user
+        ));
     }
 
     @GetMapping("/admin/users")
@@ -56,6 +65,4 @@ public class AuthController {
         List<User> users = userService.getAllUsers(requester);
         return ResponseEntity.ok(users);
     }
-
-
 }

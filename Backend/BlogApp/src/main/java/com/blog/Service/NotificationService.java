@@ -27,11 +27,16 @@ public class NotificationService {
                 .build();
 
         notificationRepository.save(notification);
-
     }
 
     public List<Notification> getNotificationsForUser(User user) {
-        return notificationRepository.findByRecipient(user);
+        List<Notification> notifications = notificationRepository.findByRecipient(user);
+        for (Notification n : notifications) {
+            if (n.getPost() != null) {
+                n.setPostId(n.getPost().getId()); // ✅ Only fetch ID, no deep joins
+            }
+        }
+        return notifications;
     }
 
     public String markAsRead(Long notificationId, User user) {
