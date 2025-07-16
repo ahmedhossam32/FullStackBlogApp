@@ -44,6 +44,12 @@ This is a complete full-stack blogging platform built with **Java Spring Boot (B
 - ✅ Admin role for moderation
 - ✅ Fully responsive UI
 
+
+## 🎥 Demo Video
+
+Want to see the app in action?  
+👉 [Watch the project walkthrough on LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:7347253574084493313/)
+
 ---
 ## 🖼️ Screenshots (with explanations)
 
